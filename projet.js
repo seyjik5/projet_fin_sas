@@ -136,6 +136,12 @@ function ajouterUnSeulCandidat(){
    
     let cinCandidat=prompt("Cin du candidat: ")
    
+    // si cinCandidat existe dans candidats : return 0
+    if (candidats.findIndex(x => x.cin == cinCandidat) != -1 ){
+        console.log("Votre candidat existe déja. ")
+        return 0
+    }
+
     let nomCandidat=prompt("Nom du candidat: ")
    
     let prenomCandidat = prompt("Prenom du candidat : ")
