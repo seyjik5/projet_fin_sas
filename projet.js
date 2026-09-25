@@ -308,6 +308,7 @@ function doVoter(){
 
 function voter(cinElecteur){
     for(let i =0;i<candidats.length;i++){
+        //verifier si cinElecteur est dans les tableau electeurs
         if (candidats[i].electeurs.indexOf(cinElecteur) != -1 ){
             console.log("vous avez deja voté pour un candidat")
             break
@@ -317,7 +318,7 @@ function voter(cinElecteur){
     affichageNormale()
     let cinCandidat = prompt("Saisissez la cin du candidat : ")
 
-    // indexCandidat contien l'index 
+    // trouver l'index du candidat qui a pour cin :  cinCandidat
     let indexCandidat = candidats.findIndex(x => x.cin ==cinCandidat)
     if (indexCandidat != -1){
         candidats[indexCandidat].electeurs.push(cinElecteur)
