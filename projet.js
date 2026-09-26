@@ -249,6 +249,9 @@ function affichageCandidat(i){
         console.log(`# Candidat ${i+1}:`)
         console.log(`CIN : ${candidats[i].cin}`)
         console.log(`Nom : ${candidats[i].nom}`)
+        console.log(`Prénom : ${candidats[i].prenom}`)
+        console.log(`Age : ${candidats[i].age}`)
+        console.log(`Parti politique : ${candidats[i].partiPolitique}`)
         console.log(`Nombre de votes : ${candidats[i].electeurs.length}`)
         console.log(`---------------`)
 
@@ -448,7 +451,7 @@ function stats(cStats){
             console.log("comming soon...")
             break;
         case "4":
-            console.log("comming soon...")
+            afficherNombreCandidatPartiPolitique()
             break;
 
         default:
@@ -469,5 +472,19 @@ function afficherNombreCandidatPartiPolitique(){
     // Pam -> 3
     // Rni -> 2
 
+    //faire un tableau des parti existants
+    let arrayParti=[]
+    for(let i=0;i<candidats.length;i++){
+        if (!arrayParti.includes(candidats[i].partiPolitique)){
+            arrayParti.push(candidats[i].partiPolitique)
+        }
+    }
+    //voir chaque pour chaque parti combien de candidat il existe : filter
+    let result
+    for(let i = 0; i<arrayParti.length;i++){
+    result = candidats.filter(x => x.partiPolitique == arrayParti[i]).length
+
+    console.log(`le nombre des candidats de ${arrayParti[i]} est ${result}`)
+    }
 }
 //------------------------------------------------------------
