@@ -72,12 +72,11 @@ function menuPrincipal(){
 function choixMenuPrincipal(choixPrincipal){
  switch (choixPrincipal) {
     case "1":
-        let choixAjouterCandidat
-        doAjouterCandidat(choixAjouterCandidat)
+        
+        doAjouterCandidat()
         break;
     case "2" :
-        let choixAfficherListeCandidats
-        doAfficherListeCandidats(choixAfficherListeCandidats)
+        doAfficherListeCandidats()
         break;
     case "3" :
         doVoter()
@@ -98,7 +97,8 @@ function choixMenuPrincipal(choixPrincipal){
         break;
     }
 }
-function doAjouterCandidat(choixAjouterCandidat){
+function doAjouterCandidat(){
+            let choixAjouterCandidat
             do {
             menuAjouterCandidat()
             choixAjouterCandidat =prompt("Choisissez un numero : ")
@@ -188,7 +188,8 @@ function ajouterPlusieursCandidats(){
 
 }
 
-function doAfficherListeCandidats(choixAfficherListeCandidats){
+function doAfficherListeCandidats(){
+            let choixAfficherListeCandidats
             do {
                 menuAfficherListeCandidats()
                 choixAfficherListeCandidats = prompt("Choisissez un numero : ")
@@ -241,7 +242,7 @@ function affichageCandidat(i){
 
 
 function affichageTrieParVote(){
-    //indexCandidat : objet contenant index du candidat et nombre d'electeurs
+    //indexCandidat : tableau d'objet contenant index du candidat et nombre d'electeurs
     let indexCandidats=[]
     let max=0
 
