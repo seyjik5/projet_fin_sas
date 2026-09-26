@@ -322,7 +322,7 @@ function voter(cinElecteur){
         //verifier si cinElecteur est dans les tableau electeurs
         if (candidats[i].electeurs.indexOf(cinElecteur) != -1 ){
             console.log("vous avez deja voté pour un candidat")
-            break
+            return 0
         }
 
     }
@@ -347,7 +347,6 @@ function doModifierCandidat(){
     if (indexCandidat == -1){
         console.log("candidat introuvable")
     }else{
-        console.log("age : "+candidats[indexCandidat].age)
         candidats[indexCandidat].age= Number(prompt("nouvel age du candidat"))
         candidats[indexCandidat].partiPolitique=prompt("nouveau parti politique du candidat")
     }
@@ -401,7 +400,7 @@ function stats(cStats){
             afficherNombreTotalCandidats()
             break;
         case "2":
-            nombreTotalVotes()
+            afficherNombreTotalVotes()
             break;
         case "3":
             console.log("comming soon...")
@@ -417,11 +416,16 @@ function stats(cStats){
 function afficherNombreTotalCandidats(){
     console.log(`Nombre total des candidats : ${candidats.length}`)
 }
-function nombreTotalVotes(){
+function afficherNombreTotalVotes(){
     let nombreTotalVotes=0
     for(let i=0;i<candidats.length;i++){
         nombreTotalVotes += candidats[i].electeurs.length
     }
     console.log(`Nombre total de votes exprimés dans toute l'élection : ${nombreTotalVotes}`)
+}
+function afficherNombreCandidatParPartiPolitique(){
+    // Pam -> 3
+    // Rni -> 2
+
 }
 //------------------------------------------------------------
