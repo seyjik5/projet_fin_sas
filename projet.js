@@ -332,6 +332,9 @@ function affichageParObjet(result){
         console.log(`# Candidat ${i+1}:`)
         console.log(`CIN : ${result[i].cin}`)
         console.log(`Nom : ${result[i].nom}`)
+        console.log(`Prénom : ${result[i].prenom}`)
+        console.log(`Age : ${result[i].age}`)
+        console.log(`Parti politique : ${result[i].partiPolitique}`)
         console.log(`Nombre de votes : ${result[i].electeurs.length}`)
         console.log(`---------------`)
     }
