@@ -128,21 +128,35 @@ function ajouterCandidat(choixAjouterCandidat){
 
 function ajouterUnSeulCandidat(){
    
-    let cinCandidat=prompt("Cin du candidat: ")
+    let cinCandidat
+    do {
+        cinCandidat=prompt("Cin du candidat: ")
+    } while (cinCandidat == "");
    
     // si cinCandidat existe dans candidats : return 0
     if (candidats.findIndex(x => x.cin == cinCandidat) != -1 ){
         console.log("Votre candidat existe déja. ")
         return 0
     }
+    let nomCandidat
+    do {
+        nomCandidat=prompt("Nom du candidat: ")
+    } while (nomCandidat == "");
+     let prenomCandidat
+    do {
+        prenomCandidat = prompt("Prenom du candidat : ")
+    } while (prenomCandidat =="");
 
-    let nomCandidat=prompt("Nom du candidat: ")
-   
-    let prenomCandidat = prompt("Prenom du candidat : ")
-
-    let partiPolitiqueCandidat = prompt("Parti politique du candidat : ")
-
-    let ageCandidat = Number(prompt("Age du candidat : "))
+    let partiPolitiqueCandidat
+    do {
+        partiPolitiqueCandidat = prompt("Parti politique du candidat : ")
+    } while (partiPolitiqueCandidat == "");
+     
+    let ageCandidat
+    do {
+        ageCandidat = Number(prompt("Age du candidat : "))
+    } while (!ageCandidat); //pour vérifier si ageCandidat est vide : !ageCandidat est true si ageCandidat est vide
+     
     let elec = []
 
     console.log("cin des electeurs, tapez 0 pour arreter")
@@ -283,7 +297,11 @@ function affichageTrieParVote(){
 
 
 function affichageParCin(){
-    let partiSaisit=prompt("saisissez le parti du candidat: ")
+    let partiSaisit
+    do {
+        partiSaisit=prompt("saisissez le parti du candidat: ")
+    } while (partiSaisit == "");
+
     let result=candidats.filter((candidat)=> candidat.partiPolitique == partiSaisit)
 
     //let result = candidats.findIndex(x => x.partiPolitique == partiSaisit)
@@ -309,7 +327,10 @@ function affichageParObjet(result){
 function doVoter(){
     let cinElecteur
     do {
-         cinElecteur= prompt("Saisissez votre Cin, 0 pour quitter : ")
+        do {
+            cinElecteur= prompt("Saisissez votre Cin, 0 pour quitter : ")
+        } while (cinElecteur=="");
+         
         if(cinElecteur == "0"){
             break
         }
@@ -327,7 +348,10 @@ function voter(cinElecteur){
 
     }
     affichageNormale()
-    let cinCandidat = prompt("Saisissez la cin du candidat : ")
+    let cinCandidat
+    do {
+        cinCandidat = prompt("Saisissez la cin du candidat : ")
+    } while (cinCandidat =="");
 
     // trouver l'index du candidat qui a pour cin :  cinCandidat
     let indexCandidat = candidats.findIndex(x => x.cin ==cinCandidat)
@@ -341,19 +365,33 @@ function voter(cinElecteur){
 
 function doModifierCandidat(){
     affichageNormale()
-    let cinCandidat = prompt("Saisissez la cin du candidat : ")
+    let cinCandidat
+    do {
+        cinCandidat = prompt("Saisissez la cin du candidat : ")
+    } while (cinCandidat == "");
+    
     // trouver index du candidat selon cin
     let indexCandidat = candidats.findIndex(x => x.cin == cinCandidat)
     if (indexCandidat == -1){
         console.log("candidat introuvable")
     }else{
-        candidats[indexCandidat].age= Number(prompt("nouvel age du candidat"))
-        candidats[indexCandidat].partiPolitique=prompt("nouveau parti politique du candidat")
+        do {
+            candidats[indexCandidat].age= Number(prompt("nouvel age du candidat"))
+        } while (candidats[indexCandidat].age=="");
+        
+        do {
+            candidats[indexCandidat].partiPolitique=prompt("nouveau parti politique du candidat")
+        } while (candidats[indexCandidat].partiPolitique=="");
+        
     }
 }
 function doSupprimerCandidat(){
     affichageNormale()
-    let cinCandidat = prompt("Saisissez la cin du candidat : ")
+    let cinCandidat
+    do {
+        cinCandidat = prompt("Saisissez la cin du candidat : ")
+
+    } while (condition);
     // trouver index du candidat selon cin
     let indexCandidat = candidats.findIndex(x => x.cin == cinCandidat)
     if (indexCandidat == -1){
@@ -365,7 +403,11 @@ function doSupprimerCandidat(){
 }
 
 function doChercherCandidatParNom(){
-    let nomCandidat=prompt("Saisissez le nom du candidat : ")
+    let nomCandidat
+    do {
+       nomCandidat=prompt("Saisissez le nom du candidat : ") 
+    } while (nomCandidat == "");
+    
     let indexCandidat = candidats.findIndex(x => x.nom == nomCandidat)
         if (indexCandidat == -1){
         console.log("candidat introuvable")
@@ -423,7 +465,7 @@ function afficherNombreTotalVotes(){
     }
     console.log(`Nombre total de votes exprimés dans toute l'élection : ${nombreTotalVotes}`)
 }
-function afficherNombreCandidatParPartiPolitique(){
+function afficherNombreCandidatPartiPolitique(){
     // Pam -> 3
     // Rni -> 2
 
