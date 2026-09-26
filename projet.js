@@ -92,22 +92,25 @@ function choixMenuPrincipal(choixPrincipal){
         doChercherCandidatParNom()
         break;
     case "7" :
+        doStats()
         break;
     default:
         break;
     }
 }
+function doAjouterCandidat(choixAjouterCandidat){
+            do {
+            menuAjouterCandidat()
+            choixAjouterCandidat =prompt("Choisissez un numero : ")
+            ajouterCandidat(choixAjouterCandidat)
+
+        } while (choixAjouterCandidat != "0");
+
+}
 
 function menuAjouterCandidat(){
     console.log("1 : Ajouter un seul candidat")
     console.log("2 : Ajouter plusieurs candidats")
-    console.log("0 : Revenir au menu principal")
-}
-
-function menuAfficherListeCandidats(){
-    console.log("1 : Affichage normale")
-    console.log("2 : Affichage trié par vote")
-    console.log("3 : Affichage des candidats d'un parti politique")
     console.log("0 : Revenir au menu principal")
 }
 function ajouterCandidat(choixAjouterCandidat){
@@ -122,15 +125,6 @@ function ajouterCandidat(choixAjouterCandidat){
     }
 }
 
-function doAjouterCandidat(choixAjouterCandidat){
-            do {
-            menuAjouterCandidat()
-            choixAjouterCandidat =prompt("Choisissez un numero : ")
-            ajouterCandidat(choixAjouterCandidat)
-
-        } while (choixAjouterCandidat != "0");
-
-}
 
 function ajouterUnSeulCandidat(){
    
@@ -153,18 +147,18 @@ function ajouterUnSeulCandidat(){
 
     console.log("cin des electeurs, tapez 0 pour arreter")
 
-    let continuer = true
+    
     let i=0
 
     let cinElecteur
     do {
-        cinElecteur= prompt("cin de l'electeur")
+        cinElecteur= prompt("cin de l'electeur : ")
         if(cinElecteur == "0"){
             break
         }
         elec[i]=cinElecteur
         i++
-    } while (continuer);
+    } while (true);
 
     let candidat ={
         cin : cinCandidat,
@@ -178,7 +172,6 @@ function ajouterUnSeulCandidat(){
     candidats.push(candidat)
 
 }
-
 
 function ajouterPlusieursCandidats(){
     let cArret
@@ -203,6 +196,15 @@ function doAfficherListeCandidats(choixAfficherListeCandidats){
 
             } while (choixAfficherListeCandidats !="0");
 }
+
+function menuAfficherListeCandidats(){
+    console.log("1 : Affichage normale")
+    console.log("2 : Affichage trié par vote")
+    console.log("3 : Affichage des candidats d'un parti politique")
+    console.log("0 : Revenir au menu principal")
+}
+
+
 function afficherListeCandidats(choixAfficherListeCandidats){
     switch (choixAfficherListeCandidats) {
         case "1":
@@ -214,7 +216,7 @@ function afficherListeCandidats(choixAfficherListeCandidats){
             break;
         case "3" :
             affichageParCin()
-        
+       
         default:
             break;
     }
@@ -225,7 +227,7 @@ function affichageNormale(){
 
         affichageCandidat(i)
     }
-    
+   
 }
 
 function affichageCandidat(i){
@@ -236,6 +238,7 @@ function affichageCandidat(i){
         console.log(`---------------`)
 
 }
+
 
 function affichageTrieParVote(){
     //indexCandidat : objet contenant index du candidat et nombre d'electeurs
@@ -268,7 +271,7 @@ function affichageTrieParVote(){
 
     //affichage du plus grand au plus petit (commencer le tableau par la droite)
 
-    
+   
    
    
     for ( let i=indexCandidats.length-1; i>=0;i--){
@@ -277,19 +280,20 @@ function affichageTrieParVote(){
     }
 }
 
+
 function affichageParCin(){
     let partiSaisit=prompt("saisissez le parti du candidat: ")
     let result=candidats.filter((candidat)=> candidat.partiPolitique == partiSaisit)
 
     //let result = candidats.findIndex(x => x.partiPolitique == partiSaisit)
-    
+   
     if(result.length == 0){
         console.log("parti non trouvé")
     }else{
         affichageParObjet(result)
     }
 
-    
+   
 }
 
 function affichageParObjet(result){
@@ -367,12 +371,56 @@ function doChercherCandidatParNom(){
         console.log("candidat introuvable")
     }else{
         //affichage du candidat
-        afficherUnSeulCandidat(indexCandidat)
-        
+        affichageCandidat(indexCandidat)
+       
     }
 }
-function afficherUnSeulCandidat(indexCandidat){
-    affichageCandidat(indexCandidat)
+function doStats(){
+    let cStats
+    do {
+       
+        menuStats()
+        cStats = prompt("Choisissez un numero : ")
+        stats(cStats)
+
+    } while (cStats != "0");
+}
+function menuStats(){
+        console.log("1 : Affichage le nombre total de candidats")
+        console.log("2 : Affichage du nombre total de vote exprimé dans toute l'élection")
+        console.log("3 : Affichage du Top 3 des candidats ayant le plus de votes.")
+        console.log("4 : Affichage du nombre de candidats par parti politique")
+        console.log("0 : Revenir au menu principal")
+
+}
+
+function stats(cStats){
+    switch (cStats) {
+        case "1":
+            afficherNombreTotalCandidats()
+            break;
+        case "2":
+            nombreTotalVotes()
+            break;
+        case "3":
+            console.log("comming soon...")
+            break;
+        case "4":
+            console.log("comming soon...")
+            break;
+
+        default:
+            break;
+    }
+}
+function afficherNombreTotalCandidats(){
+    console.log(`Nombre total des candidats : ${candidats.length}`)
+}
+function nombreTotalVotes(){
+    let nombreTotalVotes=0
+    for(let i=0;i<candidats.length;i++){
+        nombreTotalVotes += candidats[i].electeurs.length
+    }
+    console.log(`Nombre total de votes exprimés dans toute l'élection : ${nombreTotalVotes}`)
 }
 //------------------------------------------------------------
-
