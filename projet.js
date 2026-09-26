@@ -23,8 +23,15 @@ prenom : "Jamal",
 partiPolitique : "Pam",
 age: 47,
 electeurs: ["C7892","S987","O9873"]
-}
-
+},
+{
+cin : "Q1258",
+nom : "Kacim",
+prenom : "Ahmed",
+partiPolitique : "Pjd",
+age: 40,
+electeurs: ["CX1884","J49137","U1515","E949478"]
+},
 ];
 
    
@@ -261,7 +268,6 @@ function affichageCandidat(i){
 function affichageTrieParVote(){
     //indexCandidat : tableau d'objet contenant index du candidat et nombre d'electeurs
     let indexCandidats=[]
-    let max=0
 
     for (let i = 0; i < candidats.length; i++) {
         let indexCandidat = {
@@ -448,7 +454,7 @@ function stats(cStats){
             afficherNombreTotalVotes()
             break;
         case "3":
-            console.log("comming soon...")
+            afficherTop3()
             break;
         case "4":
             afficherNombreCandidatPartiPolitique()
@@ -472,13 +478,30 @@ function afficherNombreCandidatPartiPolitique(){
     // Pam -> 3
     // Rni -> 2
 
-    //faire un tableau des parti existants
+    // faire un tableau des parti sans doublon
     let arrayParti=[]
     for(let i=0;i<candidats.length;i++){
         if (!arrayParti.includes(candidats[i].partiPolitique)){
             arrayParti.push(candidats[i].partiPolitique)
         }
     }
+    //---------------
+
+    // for (let i = 0; i< candidats.length;i++){
+        
+    //     for (let j = 0;j<arrayParti.length;j++){
+    //         if (arrayParti[j]==candidats[i].partiPolitique){
+    //             break
+    //         }else if(j==arrayParti.length-1){
+    //             arrayParti.push(candidats[i].partiPolitique)
+    //         }else{
+    //             continue
+    //         }
+    //     }
+        
+    // }
+    //---------------
+
     //voir chaque pour chaque parti combien de candidat il existe : filter
     let result
     for(let i = 0; i<arrayParti.length;i++){
@@ -487,4 +510,43 @@ function afficherNombreCandidatPartiPolitique(){
     console.log(`le nombre des candidats de ${arrayParti[i]} est ${result}`)
     }
 }
+function afficherTop3(){
+     //indexCandidat : tableau d'objet contenant index du candidat et nombre d'electeurs
+    let indexCandidats=[]
+
+    for (let i = 0; i < candidats.length; i++) {
+        let indexCandidat = {
+            index : i,
+            nombreElecteurs :  candidats[i].electeurs.length
+        }
+        indexCandidats.push(indexCandidat)
+       
+    }
+
+    //trier indexCandidat du plus grand au plus petit
+    let tmp
+    for(let i = indexCandidats.length-1;i>=1;i--){
+       
+        for(let j=0; j<=i-1;j++){
+            if (indexCandidats[j+1].nombreElecteurs < indexCandidats[j].nombreElecteurs){
+                tmp =indexCandidats[j]
+                indexCandidats[j]=indexCandidats[j+1]
+                indexCandidats[j+1]=tmp
+            }
+        }
+    }
+
+
+
+    //affichage du plus grand au plus petit (commencer le tableau par la droite)
+
+   
+   
+   
+    for ( let i=indexCandidats.length-1; i>=indexCandidats.length-3;i--){
+        //console.log(candidats[indexCandidats[i].index])
+        affichageCandidat(indexCandidats[i].index)
+    }
+}
+
 //------------------------------------------------------------
