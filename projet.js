@@ -177,8 +177,11 @@ function ajouterUnSeulCandidat(){
         if(cinElecteur == "0"){
             break
         }
-        elec[i]=cinElecteur
-        i++
+        if (cinElecteur != ""){
+            elec[i]=cinElecteur
+            i++
+        }
+
     } while (true);
 
     let candidat ={
