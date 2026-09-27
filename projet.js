@@ -406,7 +406,7 @@ function doSupprimerCandidat(){
     do {
         cinCandidat = prompt("Saisissez la cin du candidat : ")
 
-    } while (condition);
+    } while (cinCandidat=="");
     // trouver index du candidat selon cin
     let indexCandidat = candidats.findIndex(x => x.cin == cinCandidat)
     if (indexCandidat == -1){
