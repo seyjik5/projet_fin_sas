@@ -491,22 +491,7 @@ function afficherNombreCandidatPartiPolitique(){
             arrayParti.push(candidats[i].partiPolitique)
         }
     }
-    //---------------
 
-    // for (let i = 0; i< candidats.length;i++){
-        
-    //     for (let j = 0;j<arrayParti.length;j++){
-    //         if (arrayParti[j]==candidats[i].partiPolitique){
-    //             break
-    //         }else if(j==arrayParti.length-1){
-    //             arrayParti.push(candidats[i].partiPolitique)
-    //         }else{
-    //             continue
-    //         }
-    //     }
-        
-    // }
-    //---------------
 
     //voir chaque pour chaque parti combien de candidat il existe : filter
     let result
